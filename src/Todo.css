@@ -1,0 +1,214 @@
+*{
+    box-sizing:border-box;
+    
+  }
+
+  @media screen and (max-width:837px){
+
+    .App{
+      
+    font-size: 100px;
+        
+
+    }
+
+    .form-input{
+        width:120px;
+    }
+
+  }
+
+
+  @media screen and (min-width:870px){
+
+    .todo-options{
+  
+        border-top : solid 1px gray;
+        font-size : 15px;
+        display: flex;
+        justify-content: space-around;
+        padding: 0px 80px;
+    }
+
+  
+  
+  
+    }
+
+
+
+  .todo-options{
+       
+      display : flex;
+      justify-content: space-around;
+      padding :0px;
+       border: 1px solid #efefef;
+
+
+  }
+
+  .todo-options a {
+
+    
+    color: gray;
+  }
+
+  .active-link {
+
+    text-decoration: underline;
+  }
+
+  
+
+
+.border {
+
+    border : solid  grey 1px;
+    border-radius: 5px;
+    
+}
+
+.App {
+    font-family: Arial Helvetica sans-serif;
+    font-size: 2vw;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+
+.todo-list{
+
+    display : flex;
+    flex-direction: column;
+    width : 40%;
+    margin-top : 20px;
+    border-top-left-radius:10px;
+    border-top-right-radius: 10px;
+    
+
+    border: 1px solid #efefef;
+    box-shadow:
+    /* The top layer shadow */
+        0 1px 1px rgba(0,0,0,0.15),
+            /* The second layer */
+        0 10px 0 -5px #eee,
+            /* The second layer shadow */
+        0 10px 1px -4px rgba(0,0,0,0.15),
+            /* The third layer */
+        0 20px 0 -10px #eee,
+            /* The third layer shadow */
+        0 20px 1px -9px rgba(0,0,0,0.15);
+
+}
+
+.todo-form {
+     
+ display:flex;
+ 
+ 
+    
+}
+
+
+.form-input{
+    flex: 10;
+    opacity: 0.2;
+    border-color: gray;
+}
+.form-button{
+    flex:1;
+    background: transparent; 
+
+
+}
+
+
+
+
+.todo-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 40px;
+    border-bottom: 1px solid #cecece;
+   padding : 15px;
+  
+   
+
+}
+
+
+.element{
+    display : flex;
+    flex : 11;
+    word-break: break-all;
+
+    
+    
+}
+
+.options {
+
+    display: flex;
+    justify-content: flex-end;
+    flex: 3;
+}
+
+.check{
+
+    flex:1;
+
+}
+
+.checkbox{
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+}
+label{
+    position: relative;
+}
+
+.checkbox::after{
+     
+    position: absolute;
+    top:-16px;
+    left:-3px;
+    content:"";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    display: inline-block;
+    border : solid 1px;
+   
+}
+
+.checkbox:checked +label::after{
+   
+    font-family: "FontAwsome";
+    content:"V";
+    position:absolute;
+    top :-14px;
+    left:0px;
+    color:black;
+    font-size:25px;
+}
+
+i{
+  font-size: 23px;
+}
+
+.button{
+
+
+
+}
+
+.done {
+
+    text-decoration: line-through;
+    opacity: 0.2;
+}
