@@ -60,45 +60,31 @@ class TodoList extends React.Component {
             }
 
         } else {
+            if (this.state.todo) {
+                if (this.state.todo.charCodeAt(0) !== 32) {
 
-            const newTodo = {
-                text: this.state.todo,
-                checked: false
+                    const newTodo = {
+                        text: this.state.todo,
+                        checked: false
+                    }
+
+                    let copy = [...this.state.todos]
+
+                    let arr1 = copy.splice(this.state.indexForUpdate, copy.length)
+                    let arr2 = copy.slice(0, this.state.indexForUpdate)
+                    let newArr = copy.slice(0, 0).concat(arr2, newTodo, arr1)
+
+                    this.setState({
+
+                        todo: "",
+                        update: false,
+                        todos: newArr,
+                        indexForUpdate: ""
+
+                    })
+                }
+
             }
-
-            let copy = [...this.state.todos]
-
-            let arr1 = copy.splice(this.state.indexForUpdate, copy.length)
-            let arr2 = copy.slice(0, this.state.indexForUpdate)
-            let newArr = copy.slice(0, 0).concat(arr2, newTodo, arr1)
-
-
-
-            this.setState({
-
-                todo: "",
-                update: false,
-                todos: newArr,
-                indexForUpdate: ""
-
-            })
-
-            // const newTodo = {
-
-            //     text: this.state.todo,
-            //     checked: false
-            // }
-
-            // let copyOfState = Object.assign({}, this.state)
-            // copyOfState.todos = copyOfState.todos.splice(this.state.indexForUpdate);
-
-
-            // this.setState({
-            //     todo: "",
-            //     update: false,
-            //     todos: copyOfState.todos
-
-            // })
 
         }
 
