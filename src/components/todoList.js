@@ -1,6 +1,7 @@
 import React from 'react';
 import FilterTodos from './FilterTodos';
 import '../Todo.css';
+import UpdateTodo from './UpdateTodo';
 
 
 
@@ -8,15 +9,15 @@ import '../Todo.css';
 
 class TodoList extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
 
             todos: [],
             todo: "",
-            filterValue: ''
-
-
+            filterValue: '',
+            update: false,
+            indexForUpdate: null
 
         }
 
@@ -36,26 +37,70 @@ class TodoList extends React.Component {
 
         event.preventDefault()
 
-        if (this.state.todo) {  // must not be empty string
-            if (this.state.todo.charCodeAt(0) !== 32) { // must not begin with a space
+        if (this.state.update === false) { // condition for updatin the item
+            if (this.state.todo) {  // must not be empty string
+                if (this.state.todo.charCodeAt(0) !== 32) { // must not begin with a space
 
-                const newTodo = {
-                    text: this.state.todo,
-                    checked: false
+                    const newTodo = {
+                        text: this.state.todo,
+                        checked: false
+                    }
+
+                    this.setState({
+
+                        todos: this.state.todos.concat(newTodo),
+                        todo: "",
+                        filterValue: "",
+                        inputForUpdate: "",
+                        update: false
+                    })
+
                 }
-
-                this.setState({
-
-                    todos: this.state.todos.concat(newTodo),
-                    todo: "",
-                    filterValue: ""
-                })
 
             }
 
+        } else {
+
+            const newTodo = {
+                text: this.state.todo,
+                checked: false
+            }
+
+            let copy = [...this.state.todos]
+
+            let arr1 = copy.splice(this.state.indexForUpdate, copy.length)
+            let arr2 = copy.slice(0, this.state.indexForUpdate)
+            let newArr = copy.slice(0, 0).concat(arr2, newTodo, arr1)
+
+
+
+            this.setState({
+
+                todo: "",
+                update: false,
+                todos: newArr,
+                indexForUpdate: ""
+
+            })
+
+            // const newTodo = {
+
+            //     text: this.state.todo,
+            //     checked: false
+            // }
+
+            // let copyOfState = Object.assign({}, this.state)
+            // copyOfState.todos = copyOfState.todos.splice(this.state.indexForUpdate);
+
+
+            // this.setState({
+            //     todo: "",
+            //     update: false,
+            //     todos: copyOfState.todos
+
+            // })
+
         }
-
-
 
     }
 
@@ -86,6 +131,27 @@ class TodoList extends React.Component {
 
             todos: copyOfState.todos
         })
+    }
+
+    update = (indexToUpdate) => {
+
+
+        this.setState({
+            todo: this.state.todos[indexToUpdate].text,  // grabbing the text value of the selected item in the form input
+            todos: this.state.todos.filter(el => el !== this.state.todos[indexToUpdate]),
+            indexForUpdate: indexToUpdate,
+            update: true
+
+        })
+
+
+
+
+        console.log(this.state.todos[indexToUpdate])
+
+
+
+
     }
 
 
@@ -134,12 +200,9 @@ class TodoList extends React.Component {
 
     render() {
 
-
-
         return (
 
             <div className="todo-list">
-
                 <form className="todo-form ">
                     <input
                         autoComplete="off"
@@ -160,11 +223,15 @@ class TodoList extends React.Component {
                         deleteTodo={this.deleteTodo}
                         handleChecked={this.handleChecked}
                         markAsDone={this.markAsDone}
+                        update={this.update}
                         filterValue={this.state.filterValue}
-
-
-
                     />
+
+                    {/* <UpdateTodo
+                        inputForUpdate={this.state.inputForUpdate}
+                        handleChange={this.handleChange}
+                    /> */}
+
 
                 </div>
 

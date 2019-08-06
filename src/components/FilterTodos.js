@@ -4,16 +4,20 @@ import Loader from './Loader'
 
 
 
-const FilterTodos = (props) => {
 
+
+const FilterTodos = (props) => {
 
     const todos = props.todos.map((el, index) => <TodoItem
         TodoItem todo={el.text}
         deleteTodo={() => props.deleteTodo(index)}
         handleChecked={props.handleChecked}
         markAsDone={() => props.markAsDone(index)}
+        update={() => { props.update(index) }}
         checked={el.checked}
-        index={index} />
+        index={index} >
+    </TodoItem>
+
 
     )
 
